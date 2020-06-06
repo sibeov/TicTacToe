@@ -1,29 +1,29 @@
 class ticTacToe:
     
     def __init__(self, boardDict = None):
-        self.boardDict = {
-            9:'9',
-            8:'8',
-            7:'7',
-            6:'6',
-            5:'5',
-            4:'4',
-            3:'3',
-            2:'2',
-            1:'1',
-        } if boardDict == None else boardDict
-
         # self.boardDict = {
-        #     9:' ',
-        #     8:' ',
-        #     7:' ',
-        #     6:' ',
-        #     5:' ',
-        #     4:' ',
-        #     3:' ',
-        #     2:' ',
-        #     1:' ',
+        #     9:'9',
+        #     8:'8',
+        #     7:'7',
+        #     6:'6',
+        #     5:'5',
+        #     4:'4',
+        #     3:'3',
+        #     2:'2',
+        #     1:'1',
         # } if boardDict == None else boardDict
+
+        self.boardDict = {
+            9:' ',
+            8:' ',
+            7:' ',
+            6:' ',
+            5:' ',
+            4:' ',
+            3:' ',
+            2:' ',
+            1:' ',
+        } if boardDict == None else boardDict
         
         self.allowedNumbers = (9,8,7,6,5,4,3,2,1)
         self.availableNumbers = [9,8,7,6,5,4,3,2,1]
@@ -46,7 +46,7 @@ class ticTacToe:
             print(f"|{tttBoard[i-2]}|{tttBoard[i-1]}|{tttBoard[i]}|")
             i -= 3
         
-    #//IN PROGRESS: markBoard function. Marking the board from input.
+    # IN PROGRESS: markBoard function. Marking the board from input.
     def markBoard(self, playerIp, playerMark):
         while(playerIp in self.allowedNumbers):
             self.boardDict[playerIp] = playerMark
@@ -56,28 +56,17 @@ class ticTacToe:
         availableNumbers.remove(playerIp)
         return
             
-    #PENDING: Verify function. Errorcheck and test. checkColumnsAndRows.
-    def checkColumnsAndRows(self, tttBoard):
-        index = 1
-        while(index in tttBoard): 
-            #Rows:
-            while((tttBoard[index] == tttBoard[index+1] == tttBoard[index+2]) == ('X' or 'O')):
-                return ('r', index)
-            #Columns:
-            while((tttBoard[index] == tttBoard[index+3] == tttBoard[index+6]) == ('X' or 'O')):
-                return ('c', index)
-            index += 1
+    # TODO: Create columns checking function.
+    def checkColumns(self, tttBoard):
         return
 
-    #PENDING: Verify function. Errorcheck and test. checkDiagonals.
+    # TODO: Create rows checking function.
+    def checkRows(self, tttBoard):
+        return
+
+    # TODO: Verify function. Errorcheck and test. checkDiagonals.
     def checkDiagonals(self, tttBoard):
-        index = 1
-        while(index in tttBoard):
-            while((tttBoard[index + 6] == tttBoard[5] == tttBoard[4 - index]) == ('X' or 'O')):
-                return ('d', index)
-            index += 2
         return
-
 
     #//IN PROGRESS: Code a roundcounter function.
     def roundCounter(self):
