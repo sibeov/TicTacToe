@@ -29,13 +29,11 @@ import time
 startTime = time.perf_counter()
 
 tttGame = tictactoe_module.ticTacToe()
+playerNumber = 
 
-tttBoard = tttGame.boardDict
-tttBoard[2] = 'X'
-tttBoard[5] = 'X'
-tttBoard[8] = 'X'
-
-print(tttGame.checkColumnsAndRows(tttBoard))
+while(True):
+    tttGame.printBoard()
+    tttGame.markBoard(input(f"Player {} -> Enter number: "), playerNumber)
 
 endTime = time.perf_counter()
 print(f"Runtime: {startTime - endTime}s")

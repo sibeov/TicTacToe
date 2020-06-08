@@ -1,17 +1,6 @@
 class ticTacToe:
     
     def __init__(self, boardDict = None):
-        # self.boardDict = {
-        #     9:'9',
-        #     8:'8',
-        #     7:'7',
-        #     6:'6',
-        #     5:'5',
-        #     4:'4',
-        #     3:'3',
-        #     2:'2',
-        #     1:'1',
-        # } if boardDict == None else boardDict
 
         self.boardDict = {
             9:' ',
@@ -45,30 +34,54 @@ class ticTacToe:
         while(i in tttBoard):
             print(f"|{tttBoard[i-2]}|{tttBoard[i-1]}|{tttBoard[i]}|")
             i -= 3
+    
+    # PENDING: Check function.
+    def printRoundNumber(self):
+        print(f"Round: {self.roundNumber}")
         
     # IN PROGRESS: markBoard function. Marking the board from input.
-    def markBoard(self, playerIp, playerMark):
+    def markBoard(self, playerIp, player):
         while(playerIp in self.allowedNumbers):
-            self.boardDict[playerIp] = playerMark
-            return
+            while(player == 1):
+                self.boardDict[playerIp] = 'X'
+                return
+            while(player == 2):
+                self.boardDict[playerIp] = 'O'
+                return
 
     def removeUnavailableTile(self, playerIp, availableNumbers):
         availableNumbers.remove(playerIp)
         return
-            
-    # TODO: Create columns checking function.
+    
+    # PENDING: Checker functions.
+    # PENDING: Check function.
     def checkColumns(self, tttBoard):
-        return
+        i = 9
+        while(i in self.allowedNumbers):
+            while(tttBoard[i-6] == tttBoard[i-3] == tttBoard[i]):
+                return 1
+            i -= 1
+        return 0
 
-    # TODO: Create rows checking function.
+    # PENDING: Check function.
     def checkRows(self, tttBoard):
-        return
+        i = 9
+        while(i in self.allowedNumbers):
+            while(tttBoard[i-2] == tttBoard[i-1] == tttBoard[i]):
+                return 1
+            i -= 1
+        return 0
 
-    # TODO: Verify function. Errorcheck and test. checkDiagonals.
+    # PENDING: Check function.
     def checkDiagonals(self, tttBoard):
-        return
+        i = 1
+        while(i in self.allowedNumbers):
+            while(tttBoard[i] == tttBoard[5] == tttBoard[i+6]):
+                return 1
+            i += 3
+        return 0
 
-    #//IN PROGRESS: Code a roundcounter function.
+    # PENDING: Check this roundcounter function.
     def roundCounter(self):
         while((self.player1Turn and self.player2Turn) == 0):
             self.roundNumber = 1
@@ -77,6 +90,9 @@ class ticTacToe:
             self.roundNumber += 1
             return
 
-    #//TODO: Code a player switcher.
-    def playerTurn(self, nextRoundFlag):
-        return
+    #//PENDING: Check if function works.
+    def playerTurn(self, playerIp):
+        while(playerIp == 'X'):
+            return 1
+        while(playerIp == 'O'):
+            return 2
