@@ -24,7 +24,7 @@ class ticTacToe:
         self.player2Turn = 0
         self.roundNumber = 1
 
-        self.gameVersion = 1.03
+        self.gameVersion = 1.04
 
     def __str__(self):
         return f"A TicTacToe game by s1b30v. v{self.gameVersion}"
@@ -44,17 +44,20 @@ class ticTacToe:
         while(playerIp in self.allowedNumbers):
             while(player == 1):
                 self.boardDict[playerIp] = 'X'
-                return
+                return 1
             while(player == 2):
                 self.boardDict[playerIp] = 'O'
-                return
-
-    def removeUnavailableTile(self, playerIp, availableNumbers):
-        availableNumbers.remove(playerIp)
-        return
+                return 1
+        return 0
+ 
+    def removeUnavailableTile(self, playerIp):
+        while(playerIp in self.availableNumbers):
+            self.availableNumbers.remove(playerIp)
+            return 1
+        return 0
     
     # PENDING: Checker functions.
-    # PENDING: Check function.
+    # PENDING: Check function Columns.
     def checkColumns(self, tttBoard):
         i = 9
         while(i in self.allowedNumbers):
@@ -63,7 +66,7 @@ class ticTacToe:
             i -= 1
         return 0
 
-    # PENDING: Check function.
+    # PENDING: Check function Rows.
     def checkRows(self, tttBoard):
         i = 9
         while(i in self.allowedNumbers):
@@ -72,7 +75,7 @@ class ticTacToe:
             i -= 1
         return 0
 
-    # PENDING: Check function.
+    # PENDING: Check function diagonals.
     def checkDiagonals(self, tttBoard):
         i = 1
         while(i in self.allowedNumbers):
@@ -80,19 +83,3 @@ class ticTacToe:
                 return 1
             i += 3
         return 0
-
-    # PENDING: Check this roundcounter function.
-    def roundCounter(self):
-        while((self.player1Turn and self.player2Turn) == 0):
-            self.roundNumber = 1
-            return
-        while(self.player1Turn == self.player2Turn):
-            self.roundNumber += 1
-            return
-
-    #//PENDING: Check if function works.
-    def playerTurn(self, playerIp):
-        while(playerIp == 'X'):
-            return 1
-        while(playerIp == 'O'):
-            return 2
