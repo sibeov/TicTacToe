@@ -1,29 +1,23 @@
-#AUTHOR: Sindre Bergsvik Øvstegård
+# AUTHOR: Sindre Bergsvik Øvstegård
 #YEAR: 2020
 
 #########################################################################
-#COMMENTS: nameOfProgram.py starts here.
+# COMMENTS: nameOfProgram.py starts here.
 #########################################################################
 
 #########################################################################
-#CODE_START:
+# CODE_START:
 #########################################################################
 
 #########################################################################
-#IMPORTS:
+# IMPORTS:
 #########################################################################
 from sample import tictactoe_module
-import time
 import pdb
 import re
 
 #########################################################################
-#TIMER START:
-#########################################################################
-startTime = time.perf_counter()
-
-#########################################################################
-#GLOBAL VARS:
+# GLOBAL VARS:
 #########################################################################
 tttGame = tictactoe_module.ticTacToe()
 tttBoard = tttGame.boardDict
@@ -34,7 +28,7 @@ playerInput = "Gibberish"
 
 
 #########################################################################
-#FUNCTIONS DEF: Some helper functions.
+# FUNCTIONS DEF: Some helper functions.
 #########################################################################
 def playerSwitcher(playerNumber):
     while(playerNumber <= 1):
@@ -43,8 +37,9 @@ def playerSwitcher(playerNumber):
         return 1
 
 #########################################################################
-#MAIN STARTS HERE:
+# MAIN STARTS HERE:
 #########################################################################
+
 
 # Main game loop:
 while(True):
@@ -62,24 +57,33 @@ while(True):
     tttGame.removeUnavailableTile(playerInput)
 
     # Check board for three in row.
-    # BUG: Does not detect winner. Scope issue?
+    # BUG: Does not detect winner at all!
     while(result == (0, 0)):
         result = tttGame.checkColumns(tttBoard)
+        if(result != (0, 0)):
+            break
         result = tttGame.checkRows(tttBoard)
+        if(result != (0, 0)):
+            break
         result = tttGame.checkDiagonals(tttBoard)
+        if(result != (0, 0)):
+            break
         break
 
     # Print winner and exit game:
     while(result != (0, 0)):
         while(result[1] == 'X'):
+            tttGame.printBoard(tttBoard)
             print(f"Player 1 is the winner!")
+            exit()
         while(result[1] == 'O'):
+            tttGame.printBoard(tttBoard)
             print(f"Player 2 is the winner!")
+            exit()
+        break
 
     playerNum = playerSwitcher(playerNum)
 
-endTime = time.perf_counter()
-print(f"Runtime: {startTime - endTime}s")
 #########################################################################
-#CODE_END: nameOfProgram.py starts here.
+# CODE_END: nameOfProgram.py starts here.
 #########################################################################
