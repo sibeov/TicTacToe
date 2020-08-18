@@ -23,10 +23,10 @@ class ticTacToe:
         self.player1Mark = 'X'
         self.player2Mark = 'O'
 
-        self.gameVersion = 1.2
+        self.gameVersion = 1.3
 
     def __str__(self):
-        return f"A TicTacToe game by s1b30v. v{self.gameVersion}"
+        return f"Module version -> {self.gameVersion}"
 
     def printBoard(self, tttBoard):
         i = 9
@@ -53,7 +53,6 @@ class ticTacToe:
             return 1
         return 0
 
-    # PENDING: Check function Columns.
     def checkColumns(self, tttBoard):
         i = 9
         while(i > 6 and i < 10):
@@ -64,7 +63,6 @@ class ticTacToe:
             i -= 1
         return (0, 0)
 
-    # PENDING: Check function Rows.
     def checkRows(self, tttBoard):
         i = 9
         while(i > 2 and i < 10):
@@ -75,7 +73,6 @@ class ticTacToe:
             i -= 3
         return (0, 0)
 
-    # PENDING: Check function diagonals.
     def checkDiagonals(self, tttBoard):
         while(tttBoard[1] == tttBoard[5] == tttBoard[9]):
             if(tttBoard[5] == ' '):
